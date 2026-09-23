@@ -34,25 +34,25 @@ Analyse timer and UART operation by toggling an LED at one-second intervals usin
 15. Run the program on the S32K144 board.
 
 ---
+Program
+```
+#include "sdk_project_config.h"
+#include<stdio.h>
+int main(void){
+	CLOCK_DRV_Init(&clockMan1_InitConfig0);
+	PINS_DRV_Init(NUM_OF_CONFIGURED_PINS0, g_pin_mux_InitConfigArr0);
+	static char txBuff[64];
+	LPUART_DRV_Init(INST_LPUART_1, &lpUartState0, &lpuart_0_InitConfig0);
+	uint8_t len=(uint8_t)sprintf(txBuff, "Hello World");
+	LPUART_DRV_SendData(INST_LPUART_1, (const uint8_t *)txBuff, (uint8_t)len);
+}
+```
+
 ## OUTPUT
+<img width="1915" height="1198" alt="image" src="https://github.com/user-attachments/assets/dc4ab2d8-9b2f-4fa9-8e7c-24ddd1f1b6dc" />
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
 ## Result
 
 The **Timer and UART operation** was successfully analyzed and implemented. The LED was toggled at **one-second intervals using a timer interrupt**, and the message **"Hello World"** was successfully displayed on **PuTTY** through the UART API. The **ADC register value and its corresponding voltage** were also transmitted and displayed through UART, confirming the successful operation of the timer, ADC, and UART peripherals.
